@@ -1,0 +1,25 @@
+.container {
+    width: 400px;
+    height: 320px;
+    background-color: green;
+    display: flex;
+}
+
+.circle {
+    content: "";
+    align-self: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: rgb(253, 0, 0);
+    animation: animate 3s linear infinite;
+}
+
+@keyframes animate {
+    0% {
+        transform: translateX(0px);
+    }
+    100% {
+        transform: translateX(370px);
+    }
+}

@@ -1,0 +1,15 @@
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.results {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 100px;
+    height: 100px;
+}
+
+img {
+    opacity: 0;
+}

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="timer">000:00</div>
+    <button onclick="startTimer()">Start</button>
+    <button onclick="stopTimer()">Stop</button>
+    <button onclick="resetTimer()">Reset</button>
+
+    <script>
+      var timerInterval;
+      var seconds = 0;
+      var centiseconds = 0;
+
+      function updateTimerDisplay() {
+        var secondsDisplay = seconds.toString().padStart(3, "0");
+        var centisecondsDisplay = centiseconds.toString().padStart(2, "0");
+        document.getElementById("timer").textContent =
+          secondsDisplay + ":" + centisecondsDisplay;
+      }
+
+      function startTimer() {
+        if (!timerInterval) {
+          timerInterval = setInterval(function () {
+            centiseconds++
+            if (centiseconds == 100) {
+                centiseconds = 0
+                seconds++
+            }
+            if (seconds == 100) {
+                stopTimer();
+            }
+            updateTimerDisplay()
+          }, 10)
+        } 
+      }
+
+      function stopTimer(){
+        clearInterval(timerInterval)
+        timerInterval = null
+      }
+
+
+      function resetTimer() {
+        clearInterval(timerInterval)
+        seconds = 0
+        centiseconds = 0
+        updateTimerDisplay()
+      }
+    </script>
+  </body>
+</html>

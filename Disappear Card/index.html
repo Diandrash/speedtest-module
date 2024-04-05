@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dissappear Card Animation</title>
+    <link rel="stylesheet" href="disappear.css">
+</head>
+<body>
+
+    <div class="row">
+        <div class="results"></div>
+        <img src="./match.jpg" alt="Image">
+    </div>
+
+      
+    <script>
+        const results = document.querySelector(".results");
+        const img = document.querySelector("img");
+
+        const numCols = 5;
+        const numRows = 3;
+
+        const cellWidth = img.clientWidth / numCols;
+        const cellHeight = img.clientHeight / numRows;
+
+        // Membuat elemen-elemen <div> dan menambahkannya ke dalam results
+        for (let i = 0; i < numRows; i++) {
+            for (let j = 0; j < numCols; j++) {
+                const div = document.createElement("div");
+                div.style.width = `${cellWidth}px`;
+                div.style.height = `${cellHeight}px`;
+                div.style.left = `${j * cellWidth}px`;
+                div.style.top = `${i * cellHeight}px`;
+                div.style.backgroundImage = `url(${img.src})`;
+                div.style.backgroundPosition = `-${j * cellWidth}px -${i * cellHeight}px`;
+
+                // // const span = document.createElement("span");
+                // // span.textContent = `Card ${i * numCols + j + 1}`;
+                // div.appendChild(span);
+                
+                // div.style.border = "1px solid white";
+                div.style.backgroundRepeat = "no-repeat";
+
+                results.appendChild(div);
+            }
+        }
+
+        const divs = results.querySelectorAll("div");
+        console.log({Divs: divs});
+
+        
+
+        // Mengatur animasi penghilangan elemen-elemen <div> secara berurutan
+        animateDisappear(divs.length - 1);
+
+        function animateDisappear(index) {
+            if (index >= 0) {
+                setTimeout(() => {
+                    divs[index].style.opacity = 0;
+                    animateDisappear(index - 1);
+                }, 1500);
+            }
+        }
+    </script>
+</body>
+</html>

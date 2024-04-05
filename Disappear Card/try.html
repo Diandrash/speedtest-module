@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Try Dissappear Card</title>
+    <link rel="stylesheet" href="try.css">
+</head>
+<body>
+    <div class="row">
+        <div class="results"></div>
+        <img src="./download.jpg" alt="">
+    </div>
+
+
+    <script>
+        const results = document.querySelector('.results')
+        const img = document.querySelector('img')
+
+        const numRows = 3;
+        const numCols = 3;
+
+        const cellWidth = img.clientWidth / numCols;
+        const cellHeight = img.clientHeight / numRows;
+
+        for (let i = 0; i < numRows; i++) {
+            for (let j = 0; j < numCols; j++) {
+                const div = document.createElement("div")
+                div.style.width = `${cellWidth}px`
+                div.style.height = `${cellHeight}px`
+                div.style.backgroundImage = `url(${img.src})`
+                div.style.top = `${cellHeight * i}px`
+                div.style.left = `${cellWidth * j}px`
+                div.style.backgroundPosition = `-${cellWidth * j}px -${cellHeight * i}px`
+                console.log({div: div});
+
+                results.appendChild(div);
+            }            
+        }
+        // console.log(cellWidth);
+
+        const divs = results.querySelectorAll("div");
+
+        deleteCard(divs.length - 1)
+
+        function deleteCard(index) {
+            if (index >= 0) {
+                setTimeout(() => {
+                    divs[index].style.opacity = 0
+                    deleteCard(index -1)
+                }, 1500);
+            }
+        }
+    </script>
+</body>
+</html>

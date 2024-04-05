@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Digital Timer</title>
+    <style>
+      /* CSS untuk tampilan timer */
+      .timer {
+        font-size: 2em;
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="timer" id="timer">000:00</div>
+    <button onclick="startTimer()">Start Timer</button>
+    <button onclick="stopTimer()">Stop Timer</button>
+    <button onclick="resetTimer()">Reset Timer</button>
+
+    <script>
+      var timerInterval;
+      var centiseconds = 0;
+      var seconds = 0;
+
+      function updateTimerDisplay() {
+        var secondsDisplay = seconds.toString().padStart(3, "0");
+        var centisecondsDisplay = centiseconds.toString().padStart(2, "0");
+        document.getElementById("timer").textContent =
+          secondsDisplay + ":" + centisecondsDisplay;
+      }
+
+      function startTimer() {
+        if (!timerInterval) {
+          timerInterval = setInterval(function () {
+            centiseconds++;
+            if (centiseconds == 100) {
+              centiseconds = 0;
+              seconds++;
+              if (seconds == 1000) {
+                stopTimer();
+              }
+            }
+            updateTimerDisplay();
+          }, 10);
+        }
+      }
+
+      function stopTimer() {
+        clearInterval(timerInterval);
+        timerInterval = null;
+      }
+
+      function resetTimer() {
+        clearInterval(timerInterval);
+        centiseconds = 0;
+        seconds = 0;
+        updateTimerDisplay();
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,52 @@
+body {
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+  align-items: center;
+}
+
+.loader {
+  width: 90px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  animation: animate 3s linear infinite;
+}
+.circle {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.one {
+
+  background-color: #193B48;
+}
+.two {
+  background-color: #19A68C;
+}
+.three {
+  background-color: #F63D3A;
+}
+.four {
+  background-color: #FDA543;
+}
+
+@keyframes animate {
+  0% {
+  transform: rotate(0deg);
+  }
+  25% {
+  transform: rotate(90deg);
+  }
+  50% {
+  transform: rotate(180deg);
+  }
+  75% {
+  transform: rotate(270deg);
+  }
+  100% {
+  transform: rotate(360deg);
+  }
+}
